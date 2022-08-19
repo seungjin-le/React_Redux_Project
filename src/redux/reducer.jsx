@@ -6,30 +6,37 @@ import {
   SHOW_ALL,
   SHOW_COMPLETE,
 } from './actions';
+import { combineReducers } from 'redux';
 
 const initialState = { todos: [], filter: 'ALL' };
 
-export function todoApp(prevState = initialState, action) {
+const reducer = combineReducers({
+  todos: todosReducer,
+  filter: filterReducer,
+});
+
+const todosInitialState = initialState.todos;
+
+function todosReducer(prevState = todosInitialState, action) {
   if (action.type === ADD_TODO) {
-    return {
-      ...prevState,
-      todos: [...prevState.todos, { text: action.text, done: false }],
-    };
+    return [...prevState, { text: action.text, done: false }];
   }
   if (action.type === EDIT_TODO) {
   }
   if (action.type === DEL_TODO) {
   }
   if (action.type === COMPLETE_TODO) {
-    return {
-      ...prevState,
-      todos: prevState.todos.map((value, index) => {
-        if (index === action.index) {
-          return { ...value, done: true };
-        }
-      }),
-    };
+    return prevState.map((value, index) => {
+      if (index === action.index) {
+        return { ...value, done: true };
+      }
+      return value;
+    });
   }
+  return prevState;
+}
+
+function filterReducer(prevState = initialState, action) {
   if (action.type === SHOW_ALL) {
     return {
       ...prevState,
@@ -44,3 +51,5 @@ export function todoApp(prevState = initialState, action) {
   }
   return prevState;
 }
+
+export default reducer;
