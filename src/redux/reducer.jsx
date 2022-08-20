@@ -10,12 +10,8 @@ import { combineReducers } from 'redux';
 
 const initialState = { todos: [], filter: 'ALL' };
 
-const reducer = combineReducers({
-  todos: todosReducer,
-  filter: filterReducer,
-});
-
 const todosInitialState = initialState.todos;
+const filterInitialState = initialState.filter;
 
 function todosReducer(prevState = todosInitialState, action) {
   if (action.type === ADD_TODO) {
@@ -36,20 +32,19 @@ function todosReducer(prevState = todosInitialState, action) {
   return prevState;
 }
 
-function filterReducer(prevState = initialState, action) {
+function filterReducer(prevState = filterInitialState, action) {
   if (action.type === SHOW_ALL) {
-    return {
-      ...prevState,
-      filter: 'ALL',
-    };
+    return 'ALL';
   }
   if (action.type === SHOW_COMPLETE) {
-    return {
-      ...prevState,
-      filter: 'COMPLETE',
-    };
+    return 'COMPLETE';
   }
   return prevState;
 }
+
+const reducer = combineReducers({
+  todos: todosReducer,
+  filter: filterReducer,
+});
 
 export default reducer;
