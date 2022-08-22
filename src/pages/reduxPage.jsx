@@ -1,5 +1,5 @@
-import TodoFormContainer from '../container/todoFormContainer';
-import TodoListContainer from '../container/todoListContainer';
+import TodoFormContainer from '../container/todo/todoFormContainer';
+import TodoListContainer from '../container/todo/todoListContainer';
 
 const ReduxPages = () => {
   return (

@@ -1,6 +1,4 @@
 import React from 'react';
-import useReduxState from '../../hooks/useReduxState';
-import { connect } from 'react-redux';
 
 const TodoList = ({ todos }) => {
   return (
