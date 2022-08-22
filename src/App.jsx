@@ -4,10 +4,10 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/index';
 import ReduxPages from './pages/reduxPage';
 import useReduxDispatch from './hooks/useReduxDispatch';
-import unsReduxState from './hooks/useReduxState';
+import useReduxState from './hooks/useReduxState';
 
 function App() {
-  const state = unsReduxState();
+  const state = useReduxState();
   const dispatch = useReduxDispatch();
 
   return (
