@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import store from '../../store';
-import { addTodo } from '../../redux/actions';
+import React, { useRef } from 'react';
 
-const TodoForm = () => {
-  const [text, setText] = useState('');
+const TodoForm = ({ add }) => {
+  const inputRef = useRef();
   const onClick = () => {
-    store.dispatch(addTodo(text));
-    setText('');
+    add(inputRef?.current.value);
+    inputRef.current.value = '';
   };
-  const onChange = (e) => {
-    setText(e.target.value);
+  const onKeyPress = ({ key }) => {
+    if (key === 'Enter') {
+      add(inputRef?.current.value);
+      inputRef.current.value = '';
+    }
   };
   return (
     <div>
-      <input type="text" onChange={onChange} value={text} />
+      <input type="text" ref={inputRef} onKeyPress={onKeyPress} />
       <button onClick={onClick}>추가</button>
     </div>
   );

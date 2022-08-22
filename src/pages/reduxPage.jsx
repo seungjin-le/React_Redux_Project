@@ -1,14 +1,12 @@
-import TodoList from '../components/todos/todoList';
-import TodoForm from '../components/todos/todoForm';
+import TodoFormContainer from '../container/todoFormContainer';
+import TodoListContainer from '../container/todoListContainer';
 
 const ReduxPages = () => {
   return (
-    <>
-      <div>
-        <TodoForm />
-        <TodoList />
-      </div>
-    </>
+    <div style={{ padding: '40px' }}>
+      <TodoFormContainer />
+      <TodoListContainer />
+    </div>
   );
 };
 

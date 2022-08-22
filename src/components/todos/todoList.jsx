@@ -1,11 +1,11 @@
 import React from 'react';
 import useReduxState from '../../hooks/useReduxState';
+import { connect } from 'react-redux';
 
-const TodoList = () => {
-  const state = useReduxState();
+const TodoList = ({ todos }) => {
   return (
     <ul>
-      {state?.todos.map((value, index) => {
+      {todos.map((value, index) => {
         return <li key={index}>{value?.text}</li>;
       })}
     </ul>
