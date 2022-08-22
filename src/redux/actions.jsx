@@ -48,7 +48,7 @@ export const getUsersSuccess = (data) => {
   // API 호출 성공(로딩을 끝내고 데이터 출력)
   return { type: GET_USERS_SUCCESS, data };
 };
-export const GetUsersFail = (error) => {
+export const getUsersFail = (error) => {
   // API 호출 실패(로딩을 끝내고 에러 출력
   return { type: GET_USERS_FAIL, error };
 };
