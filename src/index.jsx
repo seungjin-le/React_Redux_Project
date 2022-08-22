@@ -3,19 +3,13 @@ import App from './App';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import store from './store';
-import { addTodo } from './redux/actions';
+import ReduxContext from './contexts/reduxContext';
 
-store.subscribe(() => console.log(store.getState()));
-store.dispatch(addTodo('qwrq'));
-store.dispatch(addTodo('qwrq'));
-store.dispatch(addTodo('qwrq'));
-store.dispatch(addTodo('qwrq'));
-store.dispatch(addTodo('qwrq'));
-store.dispatch(addTodo('qwrq'));
-console.log(store.getState());
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <App />
+    <ReduxContext.Provider value={store}>
+      <App />
+    </ReduxContext.Provider>
   </BrowserRouter>
 );

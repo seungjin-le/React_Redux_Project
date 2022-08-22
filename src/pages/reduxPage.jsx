@@ -8,6 +8,7 @@ const ReduxPages = () => {
   useEffect(() => {
     setReduxData(store.getState());
   }, []);
+  store.subscribe(() => setReduxData(store.getState()));
   const onClick = () => {
     store.dispatch(addTodo(text));
     setText('');
@@ -21,6 +22,7 @@ const ReduxPages = () => {
         <div>
           <input type="text" onChange={onChange} value={text} />
           <button onClick={onClick}>추가</button>
+          {JSON.stringify(reduxData)}
         </div>
         {reduxData.todos?.map((value, index) => (
           <div key={index}>{value.text}</div>
