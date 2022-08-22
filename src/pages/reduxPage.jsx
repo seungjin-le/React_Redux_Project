@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import store from '../store';
 import { addTodo } from '../redux/actions';
+import ReduxContext from '../contexts/reduxContext';
 
 const ReduxPages = () => {
   const [reduxData, setReduxData] = useState({});
