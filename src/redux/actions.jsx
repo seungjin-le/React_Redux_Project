@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const ADD_TODO = 'ADD_TODO';
 export const EDIT_TODO = 'EDIT_TODO';
 export const DEL_TODO = 'DEL_TODO';
@@ -51,4 +53,16 @@ export const getUsersSuccess = (data) => {
 export const getUsersFail = (error) => {
   // API 호출 실패(로딩을 끝내고 에러 출력
   return { type: GET_USERS_FAIL, error };
+};
+
+export const getUsersThunk = () => {
+  return async (dispatch) => {
+    dispatch(getUsersState());
+    await axios
+      .get('https://api.github.com/users')
+      .then((res) => {
+        return dispatch(getUsersSuccess(res.data));
+      })
+      .catch((e) => dispatch(getUsersFail(e)));
+  };
 };
