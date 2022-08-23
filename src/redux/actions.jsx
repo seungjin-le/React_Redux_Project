@@ -42,6 +42,13 @@ export const showComplete = () => {
 };
 
 //users
+
+// redux-promise
+export const GET_USERS = 'GET_USERS';
+export const GET_USERS_PENDING = 'GET_USERS_PENDING';
+export const GET_USERS_FULFILLED = 'GET_USERS_FULFILLED';
+export const GET_USERS_REJECTED = 'GET_USERS_REJECTED';
+
 export const getUsersState = () => {
   // API 호출 시작 (로딩을 시작)
   return { type: GET_USERS_STATE };
@@ -64,5 +71,15 @@ export const getUsersThunk = () => {
         return dispatch(getUsersSuccess(res.data));
       })
       .catch((e) => dispatch(getUsersFail(e)));
+  };
+};
+
+export const getUsersPromise = () => {
+  return {
+    type: GET_USERS,
+    payload: async () => {
+      const { data } = await axios.get('https://api.github.com/users');
+      return data;
+    },
   };
 };
