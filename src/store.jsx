@@ -1,17 +1,8 @@
 import { applyMiddleware, createStore } from 'redux';
 import todoApp from './redux/reducers/reducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-// 미들웨어
-const middleware = (store) => {
-  return (next) => {
-    console.log('middleware', 1);
-    return (action) => {
-      console.log('middleware', 2);
-      return next(action);
-    };
-  };
-};
-
-const store = createStore(todoApp, applyMiddleware(middleware));
+// noinspection JSDeprecatedSymbols
+const store = createStore(todoApp, composeWithDevTools(applyMiddleware()));
 
 export default store;
