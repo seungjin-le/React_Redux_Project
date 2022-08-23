@@ -73,6 +73,7 @@ export const getUsersThunk = () => {
       .catch((e) => dispatch(getUsersFail(e)));
   };
 };
+<<<<<<< HEAD
 
 export const getUsersPromise = () => {
   return {
@@ -83,3 +84,5 @@ export const getUsersPromise = () => {
     },
   };
 };
+=======
+>>>>>>> master
