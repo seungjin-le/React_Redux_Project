@@ -1,6 +1,17 @@
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import todoApp from './redux/reducers/reducer';
 
-const store = createStore(todoApp);
+// 미들웨어
+const middleware = (store) => {
+  return (next) => {
+    console.log('middleware', 1);
+    return (action) => {
+      console.log('middleware', 2);
+      return next(action);
+    };
+  };
+};
+
+const store = createStore(todoApp, applyMiddleware(middleware));
 
 export default store;
