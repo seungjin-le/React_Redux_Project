@@ -1,4 +1,12 @@
-import { SHOW_ALL, SHOW_COMPLETE } from '../actions';
+export const SHOW_ALL = 'redux/filters/SHOW_ALL';
+export const SHOW_COMPLETE = 'redux/filters/SHOW_COMPLETE';
+
+export const showAll = () => {
+  return { type: SHOW_ALL };
+};
+export const showComplete = () => {
+  return { type: SHOW_COMPLETE };
+};
 
 const initialState = 'ALL';
 
