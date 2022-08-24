@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+import { put, call, takeEvery } from '@redux-saga/core/effects';
+import { push } from 'connected-react-router';
 // Action Type
 
 // original-redux
@@ -82,3 +83,24 @@ const Users = (state = initialState, action) => {
 export default Users;
 
 // redux-saga
+const GET_USERS_SAGA_START = 'redux/users/GET_USERS_SAGA_START';
+export const getUsersSagaStart = () => {
+  return {
+    type: GET_USERS_SAGA_START,
+  };
+};
+
+async function* getUsersSaga(action) {
+  try {
+    yield put(getUsersState());
+    const res = yield call(axios.get, 'https://api.github.com/users');
+    yield put(getUsersSuccess(res.data));
+    yield put(push('/'));
+  } catch (e) {
+    yield put(getUsersFail(e));
+  }
+}
+
+export function* usersSaga() {
+  yield takeEvery(GET_USERS_SAGA_START, getUsersSaga());
+}
