@@ -9,6 +9,7 @@ const reducer = combineReducers({
   todos,
   filter,
   users,
+  // redux 에 router 연결
   router: connectRouter(history),
 });
 

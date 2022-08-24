@@ -31,6 +31,7 @@ export const getUsersFail = (error) => {
 export const getUsersThunk = () => {
   return async (dispatch, getState, { history }) => {
     dispatch(getUsersState());
+    console.log(history);
     await axios
       .get('https://api.github.com/users')
       .then((res) => {
