@@ -5,13 +5,20 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 import history from './history';
 import { routerMiddleware } from 'connected-react-router';
+import createSagaMiddleware from 'redux-saga';
 
+const sagaMiddleware = createSagaMiddleware();
 // noinspection JSDeprecatedSymbols
 const store = createStore(
   todoApp,
   composeWithDevTools(
     applyMiddleware(
-      thunk.withExtraArgument({ history }, promise, routerMiddleware(history))
+      thunk.withExtraArgument(
+        { history },
+        promise,
+        routerMiddleware(history),
+        sagaMiddleware
+      )
     )
   )
 );

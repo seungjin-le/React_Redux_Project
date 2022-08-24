@@ -15,6 +15,7 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-promise-middleware": "^6.1.2",
+    "redux-saga": "^1.2.1",
     "redux-thunk": "^2.4.1"
   },
   "scripts": {
