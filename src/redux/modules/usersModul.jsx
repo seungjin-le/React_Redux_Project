@@ -29,7 +29,8 @@ export const getUsersFail = (error) => {
 
 // redux-thunk
 export const getUsersThunk = () => {
-  return async (dispatch) => {
+  return async (dispatch, getState, { history }) => {
+    console.log(getState, history);
     dispatch(getUsersState());
     await axios
       .get('https://api.github.com/users')
