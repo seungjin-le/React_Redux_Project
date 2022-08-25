@@ -1,21 +1,22 @@
-export const SHOW_ALL = 'redux/filters/SHOW_ALL';
-export const SHOW_COMPLETE = 'redux/filters/SHOW_COMPLETE';
+import { createActions, handleActions } from 'redux-actions';
 
-export const showAll = () => {
-  return { type: SHOW_ALL };
-};
-export const showComplete = () => {
-  return { type: SHOW_COMPLETE };
-};
+export const { showAll, showComplete } = createActions(
+  'SHOW_ALL',
+  'SHOW_COMPLETE',
+  {
+    prefix: 'redux/filters',
+  }
+);
 
 const initialState = 'ALL';
 
-export default function filter(prevState = initialState, action) {
-  if (action.type === SHOW_ALL) {
-    return 'ALL';
-  }
-  if (action.type === SHOW_COMPLETE) {
-    return 'COMPLETE';
-  }
-  return prevState;
-}
+const reducer = handleActions(
+  {
+    SHOW_ALL: (state, action) => 'ALL',
+    SHOW_COMPLETE: (state, action) => 'COMPLETE',
+  },
+  initialState,
+  { prefix: 'redux/filters' }
+);
+
+export default reducer;
